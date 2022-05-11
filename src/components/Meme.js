@@ -1,5 +1,5 @@
 import React from "react";
-import Data from "../memeData"
+
 
 export default function Meme() {
     const [meme, setMeme] = React.useState({ "topText":"", "bottomText":"", "randomImage":"http://i.imgflip.com/1bij.jpg"});
@@ -11,7 +11,7 @@ export default function Meme() {
     }, [])
     
     function getMeme(){
-        const randomNumber = Math.floor(Math.random()*Data.data.memes.length);
+        const randomNumber = Math.floor(Math.random()*allMemes.length);
         const newMemeURL = allMemes[randomNumber].url;
         setMeme(prevMeme => {
             return{
