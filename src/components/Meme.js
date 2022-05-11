@@ -3,10 +3,13 @@ import Data from "../memeData"
 
 export default function Meme() {
     const [meme, setMeme] = React.useState({ "topText":"", "bottomText":"", "randomImage":"http://i.imgflip.com/1bij.jpg"});
-    const [allMemes, setAllMemes] = React.useState(Data.data.memes)
-    console.log(allMemes)
-
-
+    const [allMemes, setAllMemes] = React.useState([])
+    React.useEffect(()=>{
+        fetch('https://api.imgflip.com/get_memes')
+            .then(res => res.json())
+            .then(res => setAllMemes(res.data.memes))
+    }, [])
+    
     function getMeme(){
         const randomNumber = Math.floor(Math.random()*Data.data.memes.length);
         const newMemeURL = allMemes[randomNumber].url;
